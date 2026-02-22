@@ -1,123 +1,21 @@
-SOFTWARE LICENSE AGREEMENT
+MIT License
 
-Danilo Da Silva Batista Proprietary Software License v2.1
+Copyright (c) 2026 Danilo Batista
 
-Copyright (c) 2026 Danilo Da Silva Batista
-All Rights Reserved.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-
-1. DEFINITIONS
-
-"Software" means the source code, object code, documentation, and any related
-materials made available by the Licensor.
-
-"Licensor" means Danilo Da Silva Batista.
-
-"User" means any individual or legal entity that accesses or uses the Software.
-
-
-2. GRANT OF LICENSE
-
-Subject to the terms and conditions of this Agreement, the Licensor grants the
-User a limited, non-exclusive, non-transferable, non-sublicensable, revocable
-license to use the Software for personal or internal commercial purposes.
-
-This license does not transfer ownership of the Software.
-
-
-3. RESTRICTIONS
-
-The User shall NOT:
-
-a) Modify, adapt, translate, or create derivative works based on the Software;
-b) Redistribute, sublicense, rent, lease, lend, sell, or otherwise transfer the Software to any third party;
-c) Make the Software publicly available through hosting, mirroring, file-sharing, or similar distribution methods;
-d) Remove or alter any copyright or proprietary notices;
-e) Reverse engineer, decompile, or disassemble the Software, except where expressly permitted by applicable Brazilian law.
-
-Any unauthorized use automatically terminates this license.
-
-
-4. OWNERSHIP AND INTELLECTUAL PROPERTY
-
-The Software is licensed, not sold. All rights, title, and interest, including
-all intellectual property rights in and to the Software, remain exclusively
-with the Licensor.
-
-Nothing in this Agreement shall be construed as granting any ownership rights
-to the User.
-
-
-5. CONTRIBUTIONS
-
-The Licensor may, at their sole discretion, accept voluntary contributions,
-suggestions, improvements, or feedback ("Contributions") related to the Software.
-
-By submitting a Contribution, the contributor:
-
-a) Grants the Licensor a perpetual, irrevocable, worldwide, royalty-free license
-   to use, modify, incorporate, and distribute such Contribution within the Software;
-b) Acknowledges that acceptance of Contributions does not grant the contributor
-   any ownership rights over the Software;
-c) Understands that the Licensor is not obligated to incorporate any Contribution.
-
-Contributors are welcome, but all final decisions remain exclusively with the Licensor.
-
-
-6. DATA PROTECTION AND LGPD COMPLIANCE
-
-If the Software processes personal data, such processing shall comply with
-Brazilian Law No. 13.709/2018 (Lei Geral de Proteção de Dados - LGPD).
-
-The User is solely responsible for ensuring that their use of the Software
-complies with applicable data protection regulations.
-
-The Licensor shall not be held responsible for misuse of personal data
-resulting from improper implementation or unlawful use by the User.
-
-
-7. DISCLAIMER OF WARRANTY
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-
-The Licensor does not guarantee that the Software will be error-free,
-uninterrupted, or secure.
-
-
-8. LIMITATION OF LIABILITY
-
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE
-LICENSOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL,
-OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA,
-OR BUSINESS INTERRUPTION, ARISING OUT OF OR RELATED TO THE USE OR INABILITY
-TO USE THE SOFTWARE.
-
-
-9. TERMINATION
-
-This Agreement is effective until terminated.
-
-It shall automatically terminate if the User fails to comply with any provision
-of this Agreement.
-
-Upon termination, the User must immediately cease all use of the Software and
-destroy all copies in their possession.
-
-
-10. GOVERNING LAW AND JURISDICTION
-
-This Agreement shall be governed by and construed in accordance with the laws
-of the Federative Republic of Brazil.
-
-The parties elect the Court of the District of Osasco, State of São Paulo,
-Brazil, as the exclusive jurisdiction to resolve any disputes arising out of
-or related to this Agreement, expressly waiving any other jurisdiction,
-however privileged it may be.
-
-
-11. ACCEPTANCE
-
-By accessing, installing, or using the Software, the User acknowledges that
-they have read, understood, and agreed to be bound by the terms of this Agreement.
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
