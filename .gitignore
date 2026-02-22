@@ -1,0 +1,28 @@
+build-win
+build-win/**/*
+
+# Build
+/build/
+/dist/
+/installer/out/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+
+# VSCode
+.vscode/
+
+third_party/SDL3-3.4.0/
+
+third_party/ViGEmClient/
+
+# Windows
+*.exe
+*.dll
+*.obj
+*.pdb
+
+# Logs
+*.log

@@ -1,0 +1,134 @@
+name: Build & Package Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write # necessário para criar release e anexar assets
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # MSYS2 + MinGW + CMake
+      - name: Setup MSYS2 (MinGW)
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          msystem: MINGW64
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-make
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            zip
+          pacboy: >-
+            toolchain:p
+
+      # Build do projeto
+      - name: Configure (CMake)
+        shell: msys2 {0}
+        run: |
+          cmake -S . -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build (CMake)
+        shell: msys2 {0}
+        run: |
+          cmake --build build --config Release
+
+      # Monta dist com exe + dlls
+      - name: Prepare dist folder
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+
+          # EXE
+          Copy-Item -Force "build/ps4ControlrRemote.exe" "dist/"
+
+          # SDL3.dll (ajuste o caminho conforme seu repo)
+          # Ex.: third_party/SDL3-mingw64/bin/SDL3.dll
+          Copy-Item -Force "third_party/SDL3-mingw64/bin/SDL3.dll" "dist/"
+
+          # ViGEmClient.dll (se está no repo: exemplo dist ou raiz)
+          # Ajuste esse caminho para onde ela fica no seu projeto
+          Copy-Item -Force "dist_deps/ViGEmClient.dll" "dist/"
+
+          # (Opcional) profiles
+          if (Test-Path "profiles") {
+            Copy-Item -Recurse -Force "profiles" "dist/profiles"
+          }
+
+      # Zip do dist (útil pra debug / portable)
+      - name: Zip dist
+        shell: pwsh
+        run: |
+          if (Test-Path "dist.zip") { Remove-Item -Force dist.zip }
+          Compress-Archive -Path "dist/*" -DestinationPath "dist.zip"
+
+      # Instala Inno Setup (ISCC) no runner
+      - name: Install Inno Setup
+        shell: pwsh
+        run: |
+          choco install innosetup -y
+
+      # Compila o instalador
+      - name: Build installer (ISCC)
+        shell: pwsh
+        run: |
+          $iss = "installer/ps4ControlrRemote.iss"
+          if (!(Test-Path $iss)) { throw "ISS not found: $iss" }
+
+          # ISCC.exe normalmente vai pra esse path via choco
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $iscc)) { throw "ISCC not found: $iscc" }
+
+          & $iscc $iss
+
+      # Descobre onde o instalador saiu (compatível com OutputDir relativo)
+      - name: Locate installer output
+        id: locate
+        shell: pwsh
+        run: |
+          # Se seu .iss usa OutputDir=installer\out
+          $candidate = "installer/out/ps4ControlrRemote_Setup.exe"
+          if (Test-Path $candidate) {
+            echo "installer_path=$candidate" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+
+          # Se você trocou OutputDir para {#SourcePath}\out no .iss
+          $candidate2 = "installer/out/ps4ControlrRemote_Setup.exe"
+          if (Test-Path $candidate2) {
+            echo "installer_path=$candidate2" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+
+          # fallback: procura qualquer exe na pasta installer/out
+          $found = Get-ChildItem -Path "installer" -Recurse -Filter "*Setup*.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (!$found) { throw "Installer exe not found" }
+          echo "installer_path=$($found.FullName)" >> $env:GITHUB_OUTPUT
+
+      # Sobe artifacts do Actions
+      - name: Upload artifacts (installer + dist.zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ps4ControlrRemote-release
+          path: |
+            dist.zip
+            ${{ steps.locate.outputs.installer_path }}
+
+      # Cria GitHub Release e anexa arquivos
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist.zip
+            ${{ steps.locate.outputs.installer_path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
