@@ -57,7 +57,7 @@ jobs:
 
           # ViGEmClient.dll (se está no repo: exemplo dist ou raiz)
           # Ajuste esse caminho para onde ela fica no seu projeto
-          Copy-Item -Force "dist_deps/ViGEmClient.dll" "dist/"
+          Copy-Item -Force "third_party/vigem/bin/ViGEmClient.dll" "dist/"
 
           # (Opcional) profiles
           if (Test-Path "profiles") {
