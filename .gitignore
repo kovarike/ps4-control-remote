@@ -20,7 +20,7 @@ third_party/ViGEmClient/
 
 # Windows
 *.exe
-*.dll
+
 *.obj
 *.pdb
 
